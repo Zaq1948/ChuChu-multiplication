@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ChuChu V!</title>
+  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+</head>
+<body>
+
+  <div class="container">
+    <h1>ChuChu V!</h1>
+
+    <div id="problem"></div>
+
+    <div id="options"></div>
+
+    <div class="feedback" id="feedback"></div>
+
+    <div class="status">
+      <div class="status-item">
+        <i class="icon fas fa-check-circle" id="correctIcon"></i>
+        <span id="correctCount">0</span> Correct
+      </div>
+      <div class="status-item">
+        <i class="icon fas fa-times-circle" id="wrongIcon"></i>
+        <span id="wrongCount">0</span> Wrong
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize game variables
+    let correctCount = 0;
+    let wrongCount = 0;
+    let gameOver = false; 
+
+    // Function to generate a multiplication problem
+    function generateProblem() {
+      if (gameOver) {
+        return; // Stop generating problems if game is over
+      }
+
+      const num1 = Math.floor(Math.random() * 10) + 1;
+      const num2 = Math.floor(Math.random() * 10) + 1;
+      const correctAnswer = num1 * num2;
+
+      // Create option buttons
+      let optionsHTML = "";
+      const options = [correctAnswer]; // Correct answer
+      while (options.length < 5) {
+        // Generate close but incorrect answers
+        let closeAnswer = correctAnswer + (Math.random() > 0.5 ? 1 : -1) * Math.floor(Math.random() * 3) + 1;
+        if (closeAnswer !== correctAnswer && !options.includes(closeAnswer)) {
+          options.push(closeAnswer);
+        }
+      }
+
+      // Shuffle options
+      for (let i = options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [options[i], options[j]] = [options[j], options[i]];
+      }
+
+      // Create buttons for each option
+      for (let i = 0; i < options.length; i++) {
+        optionsHTML += `<button class="button" onclick="checkAnswer(${options[i]})">${options[i]}</button>`;
+      }
+
+      document.getElementById("problem").textContent = `${num1} x ${num2} = ?`;
+      document.getElementById("options").innerHTML = optionsHTML;
+    }
+
+    // Function to check the player's answer
+    function checkAnswer(selectedAnswer) {
+      if (gameOver) {
+        return; // Stop checking answers if game is over
+      }
+
+      const problem = document.getElementById("problem").textContent;
+      const [num1, num2] = problem.match(/\d+/g).map(Number); // Extract numbers from problem
+      const correctAnswer = num1 * num2;
+
+      if (selectedAnswer === correctAnswer) {
+        correctCount++;
+        document.getElementById("correctCount").textContent = correctCount;
+        document.getElementById("feedback").innerHTML = `<span class="correct">Awesome! You got it right! 😎</span>`;
+
+        // Play random positive sound
+        const winSoundIndex = Math.floor(Math.random() * 6) + 1; // Random number between 1 and 6
+        const winSound = document.getElementById(`win${winSoundIndex}`);
+        winSound.play();
+
+        document.getElementById("correctIcon").classList.add("bigger"); // Make check icon bigger
+
+        if (correctCount === 10) {
+          gameOver = true; // Stop the game
+          document.getElementById("feedback").innerHTML = `<span class="correct">Congratulations! You won! 🎉</span>`;
+          const endSound = document.getElementById(`end1`);
+          endSound.play();
+        } else {
+          generateProblem(); // Generate new problem
+        }
+      } else {
+        wrongCount++;
+        document.getElementById("wrongCount").textContent = wrongCount;
+        document.getElementById("feedback").innerHTML = `<span class="incorrect">Oops! Try again! 😥</span>`;
+
+        // Play random sad sound
+        const sadSoundIndex = Math.floor(Math.random() * 4) + 1; // Random number between 1 and 4
+        const sadSound = document.getElementById(`sad${sadSoundIndex}`);
+        sadSound.play();
+
+        document.getElementById("correctIcon").classList.remove("bigger"); // Reset check icon size
+
+        if (wrongCount === 2) {
+          document.getElementById("feedback").innerHTML = `<span class="correct">The correct answer is: ${correctAnswer}</span>`;
+          generateProblem(); // Generate new problem
+        }
+      }
+    }
+
+    // Start the game
+    generateProblem();
+  </script>
+
+  <!-- Sound Files -->
+  <audio id="win1" src="win1.mp3"></audio>
+  <audio id="win2" src="win2.mp3"></audio>
+  <audio id="win3" src="win3.mp3"></audio>
+  <audio id="win4" src="win4.mp3"></audio>
+  <audio id="win5" src="win5.mp3"></audio>
+  <audio id="win6" src="win6.mp3"></audio>
+  <audio id="sad1" src="sad1.mp3"></audio>
+  <audio id="sad2" src="sad2.mp3"></audio>
+  <audio id="sad3" src="sad3.mp3"></audio>
+  <audio id="sad4" src="sad4.mp3"></audio>
+  <audio id="end1" src="end1.mp3"></audio>
+</body>
+</html>

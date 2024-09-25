@@ -1,0 +1,26 @@
+create a cute and modern HTML game for learning multiplication, designed to appeal to boys. The game is contained in a single HTML file named "index.html". Here's a breakdown of the game's features:
+
+The game has a boys color scheme.
+It uses a playful font  to appeal to younger players.
+numbers are randomly selected from a 1 to 10.
+For each turn, the player is presented with 5 options:
+
+The correct and three more wrong but close answers
+
+
+The options are shuffled and presented as buttons.
+The game provides immediate feedback:
+
+Correct answers are celebrated with a positive message.
+For incorrect answers, the player gets a second chance.
+If still incorrect, the correct answer is shown before moving to the next word.
+
+
+Correct answers are rewarded with a positive message and a point and a happy chime.
+Incorrect answers recive a sad chime and allow for a second attempt.
+After two incorrect attempts, the correct answer is shown, and the game moves to the next word.
+Added a simple CSS stylesheet to improve the game's appearance.
+Created a centered game container with a white background and rounded corners.
+Styled the buttons to be more visually appealing and consistent with the original design.
+Added color to the feedback messages (green for correct, red for incorrect).
+in the bottom create a status line,  how many correct, how many tries, and how many word left, 
