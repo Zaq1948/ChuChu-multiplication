@@ -9,33 +9,36 @@ body {
 }
 
 .container {
-  width: 90%;
-  max-width: 400px; /* Reduced max-width for better vertical fit */
-  margin: 10px auto; /* Reduced margin */
+  width: 95vw; /* Take up almost the full viewport width */
+  max-width: 450px; /* Increased max-width for larger display */
+  margin: 10px auto;
   background-color: #fff;
-  padding: 15px; /* Reduced padding */
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 70vh; /* Minimum height to occupy more of the screen */
+  display: flex; /* Use flexbox for better layout control */
+  flex-direction: column;
 }
 
 h1 {
   text-align: center;
-  font-size: 2em; /* Relative sizing */
-  margin-bottom: 10px;
+  font-size: 2.5em;
+  margin-bottom: 15px;
 }
 
 #problem {
-  font-size: 1.8em; /* Relative sizing */
+  font-size: 2.2em;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .button {
-  display: block; /* Stack buttons vertically */
-  width: 100%; /* Full width buttons */
-  padding: 8px 10px; /* Reduced padding */
-  margin: 5px 0; /* Adjusted margin */
-  font-size: 1.2em; /* Relative sizing */
+  display: block;
+  width: 100%;
+  padding: 12px 15px;
+  margin: 8px 0;
+  font-size: 1.5em;
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -50,8 +53,8 @@ h1 {
 
 .feedback {
   text-align: center;
-  margin-bottom: 10px;
-  font-size: 1.2em; /* Relative sizing */
+  margin-bottom: 15px;
+  font-size: 1.5em;
 }
 
 .correct {
@@ -63,58 +66,39 @@ h1 {
 }
 
 .status {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 10px;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .status-item {
   text-align: center;
-  flex: 1; /* Allow items to take up equal space */
-  margin: 5px; /* Added margin for better spacing */
+  flex: 1;
+  margin: 5px;
 }
 
 .icon {
-  font-size: 1.5em; /* Relative sizing */
+  font-size: 1.8em;
   margin-right: 5px;
 }
 
 .bigger {
-  font-size: 2em !important;
+  font-size: 2.5em !important;
 }
 
 
-/* Media query for smaller screens and vertical orientation */
-@media (max-width: 500px) {
+/* Media Query for Vertical Orientation (adjust as needed) */
+@media (orientation: portrait) {
   .container {
-    max-width: 95vw; /* Take almost the full viewport width */
+    width: 95vw; /* Take almost the full viewport width */
+    max-width: 500px;
   }
   .status {
-      flex-direction: column; /* Stack status vertically */
-  }
-}
-
-
-/* Media Query for Vertical Orientation (adjust thresholds as needed) */
-@media (orientation: portrait) and (max-width: 768px) {
-  .container {
-    max-width: 90vw; /* Take up 90% of viewport width */
-  }
-  h1 {
-    font-size: 1.8em;
-  }
-  #problem {
-    font-size: 1.5em;
-  }
-  .button {
-    font-size: 1em;
-  }
-  .feedback {
-    font-size: 1em;
+    flex-direction: column; /* Stack status vertically */
   }
   .status-item {
-    width: 100%; /* Ensure items fill the container width */
-    margin-bottom: 10px;
+      width: 100%;
+      margin-bottom: 10px;
   }
 }
