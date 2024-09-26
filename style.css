@@ -1,49 +1,48 @@
 body {
-  font-family: sans-serif; /* Use a standard font */
-  margin: 0; /* Remove default body margins */
-  background-color: #f0f0f0; /* Light background color */
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center content horizontally */
-  min-height: 100vh; /* Ensure the page fills the viewport height */
+  align-items: center;
+  min-height: 100vh;
 }
 
 .container {
-  width: 90%; /* Adjust width for mobile screens */
-  max-width: 600px; /* Limit maximum width */
-  margin: 20px auto; /* Center horizontally and add margin */
+  width: 90%;
+  max-width: 400px; /* Reduced max-width for better vertical fit */
+  margin: 10px auto; /* Reduced margin */
   background-color: #fff;
-  padding: 20px;
+  padding: 15px; /* Reduced padding */
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
+  font-size: 2em; /* Relative sizing */
+  margin-bottom: 10px;
 }
 
 #problem {
-  font-size: 24px;
+  font-size: 1.8em; /* Relative sizing */
   text-align: center;
   margin-bottom: 10px;
 }
 
-
 .button {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 5px;
-  font-size: 18px;
-  background-color: #4CAF50; /* Green */
+  display: block; /* Stack buttons vertically */
+  width: 100%; /* Full width buttons */
+  padding: 8px 10px; /* Reduced padding */
+  margin: 5px 0; /* Adjusted margin */
+  font-size: 1.2em; /* Relative sizing */
+  background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 45%; /* Adjust button width for mobile */
-  box-sizing: border-box; /* Include padding and border in width */
+  box-sizing: border-box;
 }
-
 
 .button:hover {
   background-color: #45a049;
@@ -52,7 +51,7 @@ h1 {
 .feedback {
   text-align: center;
   margin-bottom: 10px;
-  font-size: 18px;
+  font-size: 1.2em; /* Relative sizing */
 }
 
 .correct {
@@ -63,35 +62,59 @@ h1 {
   color: red;
 }
 
-
 .status {
   display: flex;
-  justify-content: space-around; /* Distribute items evenly */
-  margin-top: 20px;
+  justify-content: space-around;
+  margin-top: 10px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 .status-item {
   text-align: center;
+  flex: 1; /* Allow items to take up equal space */
+  margin: 5px; /* Added margin for better spacing */
 }
 
 .icon {
-  font-size: 24px; /* Increase icon size for better visibility */
+  font-size: 1.5em; /* Relative sizing */
   margin-right: 5px;
 }
 
 .bigger {
-  font-size: 36px !important; /* Increased size for correct answer feedback */
+  font-size: 2em !important;
 }
 
-/* Responsive adjustments for smaller screens */
+
+/* Media query for smaller screens and vertical orientation */
 @media (max-width: 500px) {
-  .button {
-    width: 100%; /* Full width buttons on smaller screens */
+  .container {
+    max-width: 95vw; /* Take almost the full viewport width */
   }
   .status {
-    flex-direction: column; /* Stack status items vertically */
+      flex-direction: column; /* Stack status vertically */
+  }
+}
+
+
+/* Media Query for Vertical Orientation (adjust thresholds as needed) */
+@media (orientation: portrait) and (max-width: 768px) {
+  .container {
+    max-width: 90vw; /* Take up 90% of viewport width */
+  }
+  h1 {
+    font-size: 1.8em;
+  }
+  #problem {
+    font-size: 1.5em;
+  }
+  .button {
+    font-size: 1em;
+  }
+  .feedback {
+    font-size: 1em;
   }
   .status-item {
-    margin-bottom: 10px; /* Add space between stacked items */
+    width: 100%; /* Ensure items fill the container width */
+    margin-bottom: 10px;
   }
 }
